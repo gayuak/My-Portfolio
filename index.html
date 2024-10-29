@@ -1,89 +1,524 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Welcome to Firebase Hosting</title>
-
-    <!-- update the version number as needed -->
-    <script defer src="/__/firebase/11.0.1/firebase-app-compat.js"></script>
-    <!-- include only the Firebase features as you need -->
-    <script defer src="/__/firebase/11.0.1/firebase-auth-compat.js"></script>
-    <script defer src="/__/firebase/11.0.1/firebase-database-compat.js"></script>
-    <script defer src="/__/firebase/11.0.1/firebase-firestore-compat.js"></script>
-    <script defer src="/__/firebase/11.0.1/firebase-functions-compat.js"></script>
-    <script defer src="/__/firebase/11.0.1/firebase-messaging-compat.js"></script>
-    <script defer src="/__/firebase/11.0.1/firebase-storage-compat.js"></script>
-    <script defer src="/__/firebase/11.0.1/firebase-analytics-compat.js"></script>
-    <script defer src="/__/firebase/11.0.1/firebase-remote-config-compat.js"></script>
-    <script defer src="/__/firebase/11.0.1/firebase-performance-compat.js"></script>
-    <!-- 
-      initialize the SDK after all desired features are loaded, set useEmulator to false
-      to avoid connecting the SDK to running emulators.
-    -->
-    <script defer src="/__/firebase/init.js?useEmulator=true"></script>
-
-    <style media="screen">
-      body { background: #ECEFF1; color: rgba(0,0,0,0.87); font-family: Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; }
-      #message { background: white; max-width: 360px; margin: 100px auto 16px; padding: 32px 24px; border-radius: 3px; }
-      #message h2 { color: #ffa100; font-weight: bold; font-size: 16px; margin: 0 0 8px; }
-      #message h1 { font-size: 22px; font-weight: 300; color: rgba(0,0,0,0.6); margin: 0 0 16px;}
-      #message p { line-height: 140%; margin: 16px 0 24px; font-size: 14px; }
-      #message a { display: block; text-align: center; background: #039be5; text-transform: uppercase; text-decoration: none; color: white; padding: 16px; border-radius: 4px; }
-      #message, #message a { box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); }
-      #load { color: rgba(0,0,0,0.4); text-align: center; font-size: 13px; }
-      @media (max-width: 600px) {
-        body, #message { margin-top: 0; background: white; box-shadow: none; }
-        body { border-top: 16px solid #ffa100; }
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My-Portfolio</title>
+    <link
+    href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+    rel="stylesheet"
+   />
+    <style>
+      html {
+        scroll-behavior: smooth;
       }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: "Roboto", sans-serif;
+        line-height: 1.6;
+        background-color: #1c1f26;
+        color: #eceff4;
+        scroll-behavior: smooth;
+      }
+      header {
+        position: sticky;
+        top: 0;
+        background-color: #2e3440;
+        z-index: 100;
+        padding: 10px 20px;
+    
+      }
+      .nav-container {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        gap: 720px;
+      }
+      .nav-links {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        /* gap: 10px; */
+      }
+      .nav-logo {
+        width: 50px;
+        height: 50px;
+        background-color: #7f8487;
+        border-radius: 50%;
+      }
+      .nav-logo img {
+        width: 100%;
+        height: 100%;
+      }
+      nav ul {
+        list-style: none;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      nav a {
+        text-decoration: none;
+        color: #eceff4;
+        padding: 10px 15px;
+        transition: 0.3s;
+      }
+      nav a:hover {
+        background-color: #3b4252;
+        border-radius: 5px;
+      }
+      #menu-icon{
+    font-size: 3.6rem;
+    color: var(--text-color);
+    display: none;
+}
+      .text-greet {
+        color: #bdbdbd;
+        font-size: 2.3rem;
+        margin-bottom: -20px;
+      }
+      .home-text-1 {
+        font-size: 3rem;
+        color: #5e81ac;
+        margin-bottom: -36px;
+      }
+      .home-text-2 {
+        font-size: 3rem;
+        color: #81a1c1;
+        opacity: 0.6;
+      }
+      .section-headers {
+        height: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+      section {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: row-reverse;
+        align-items: center;
+        justify-content: space-between;
+        padding: 50px;
+      }
+      #section1 {
+        background-color: #1c1f26;
+        text-align: center;
+        justify-content: center;
+        gap: 67px;
+      }
+      #section1 img {
+        width: 400px;
+        height: 400px;
+        object-fit: cover;
+        margin-bottom: 20px;
+        border-radius: 50%;
+      }
+      #section1 h1 {
+        font-size: 48px;
+      }
+      .btn {
+        margin-top: 20px;
+        display: inline-block;
+        background-color: #5e81ac;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 5px;
+        text-decoration: none;
+        transition: 0.3s;
+      }
+      .btn:hover {
+        background-color: #81a1c1;
+      }
+      .sec-head-1 {
+        color: #5e81ac;
+        font-size: 4rem;
+        margin-top: 90px;
+        margin-bottom: -50px;
+        font-weight: bolder;
+      }
+      .sec-head-2 {
+        font-size: 4rem;
+        color: #81a1c1;
+        opacity: 0.4;
+        margin-bottom: -38px;
+        font-weight: bolder;
+      }
+      .sec-head-3 {
+        font-size: 4rem;
+        color: #81a1c1;
+        opacity: 0.4;
+        margin-bottom: -38px;
+        font-weight: bolder;
+      }
+      .sec-head-4 {
+        font-size: 4rem;
+        color: #81a1c1;
+        opacity: 0.4;
+        margin-bottom: -38px;
+        font-weight: bolder;
+      }
+      .about {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .section2 {
+        background-color: #353e51;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+      #section2 img {
+        width: 30%;
+        margin: 20px 0;
+      }
+
+      #section3 {
+        background-color: 133e87;
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        color: #d8dee9;
+      }
+      #section3 img {
+        height: 300px;
+        margin-bottom: 20px;
+      }
+
+      #section4 {
+        background-color: #353a44;
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+      }
+      #section4 ul {
+        list-style: none;
+        padding: 0;
+      }
+      #section4 li {
+        margin: 10px 0;
+      }
+      #section4 a {
+        color: #5e81ac;
+        text-decoration: none;
+      }
+
+      #section5 {
+        background-color: #1c1f26;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .form {
+        box-shadow: 0 0 15px rgba(128, 128, 128, 0.5);
+        border-radius: 8px;
+        background-color: #2e3440;
+        width: 350px;
+        height: 370px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 20px;
+      }
+      .form input,
+      .form textarea {
+        width: 100%;
+        margin-bottom: 15px;
+        padding: 8px;
+        border: 1px solid #3b4252;
+        border-radius: 4px;
+        background-color: #3b4252;
+        color: white;
+      }
+      .form button {
+        width: 100%;
+        padding: 10px;
+        border: none;
+        background-color: #5e81ac;
+        color: white;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+      .form button:hover {
+        background-color: #81a1c1;
+      }
+
+      footer {
+        background: #3b4252;
+        color: white;
+        text-align: center;
+        padding: 10px;
+      }
+      footer a {
+        color: #5e81ac;
+        text-decoration: none;
+      }
+      footer a:hover {
+        text-decoration: underline;
+      }
+
+      .text-animation {
+        font-size: 1rem;
+        font-family: "roboto", sans-serif;
+        min-width: 300px;
+        overflow: hidden;
+      }
+      .text-animation span {
+        height: 4000px;
+        position: relative;
+      }
+      .text-animation span::before {
+        content: "Full-stack Developer";
+        font-size: 3rem;
+        color: #81a1c1;
+        opacity: 0.6;
+        animation: words 20s infinite;
+      }
+      .text-animation span::after {
+        position: absolute;
+
+        content: "";
+        width: calc(100% + 8px);
+        background-color: #1c1f26;
+        border-left: 1px solid #ffffffff;
+        height: 50px;
+        right: -8px;
+        top: -140%;
+        animation: cursor linear 0.6s infinite, typing 20s steps(14) infinite;
+      }
+      @keyframes cursor {
+        to {
+          border-left: 1px solid transparent;
+        }
+      }
+      @keyframes words {
+        0%,
+        20% {
+          content: "Full-stack Developer";
+        }
+        21%,
+        40% {
+          content: "UX/UI Designer";
+        }
+        41%,
+        60% {
+          content: "Web Developer";
+        }
+        61%,
+        80% {
+          content: "Blogger";
+        }
+        81%,
+        100% {
+          content: "Mobile App Developer";
+        }
+      }
+      @keyframes typing {
+        10%,
+        15%,
+        30%,
+        35%,
+        50%,
+        55%,
+        70%,
+        75%,
+        90%,
+        95% {
+          width: 0px;
+        }
+        5%,
+        20%,
+        25%,
+        40%,
+        45%,
+        60%,
+        65%,
+        80%,
+        85% {
+          width: calc(100% + 8px);
+        }
+      }
+
+
+              /* Media Queries */
+              @media (max-width: 1440px) {
+            section {
+                padding: 30px;
+            }
+            #section1 img {
+                width: 350px;
+                height: 350px;
+            }
+            .sec-head-1, .sec-head-2, .sec-head-3, .sec-head-4 {
+                font-size: 3.5rem;
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .nav-container {
+                flex-direction: column;
+                align-items: center;
+                gap: 20px;
+                
+            }
+            nav ul {
+                flex-direction: column;
+                gap: 10px;
+            }
+            section {
+                flex-direction: column;
+                align-items: center;
+                padding: 20px;
+            }
+            #section1 img {
+                width: 300px;
+                height: 300px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-container {
+                padding: 10px;
+            }
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            section {
+                padding: 15px;
+            }
+            #section1 img {
+                width: 250px;
+                height: 250px;
+            }
+            .section2 .sec-head-1{
+              padding-bottom: -300px;
+              font-size: 50px;
+            }
+            .section2 .sec-head-2{
+              padding-bottom: 220px;
+              font-size: 50px;
+            }
+        }
+
+        @media (max-width: 425px) {
+            .sec-head-1, .sec-head-2, .sec-head-3, .sec-head-4 {
+                font-size: 2.5rem;
+            }
+            .form {
+                width: 90%;
+            }
+            #section1 h3 {
+                font-size: 1.5rem;
+            }
+        }
     </style>
   </head>
   <body>
-    <div id="message">
-      <h2>Welcome</h2>
-      <h1>Firebase Hosting Setup Complete</h1>
-      <p>You're seeing this because you've successfully setup Firebase Hosting. Now it's time to go build something extraordinary!</p>
-      <a target="_blank" href="https://firebase.google.com/docs/hosting/">Open Hosting Documentation</a>
-    </div>
-    <p id="load">Firebase SDK Loading&hellip;</p>
+    <header>
+      <nav class="nav-container">
+        <div class="nav-logo">
+          <img
+            class="Logo"
+            src="/images/2e946314db2d97c51521e559ab8fe016-removebg-preview.png"
+            alt="Logo"
+          />
+        </div>
+        <i class="bx bx-menu" id="menu-icon"></i>
+        <div class="nav-links">
+          <a href="#section1">Home</a>
+          <a href="#section2">About Me</a>
+          <a href="#section3">Projects</a>
+          <a href="#section4">Contact</a>
+          <a href="#section5">Hire Me</a>
+        </div>
+      </nav>
+      
+    </header>
 
-    <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        const loadEl = document.querySelector('#load');
-        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
-        // // The Firebase SDK is initialized and available here!
-        //
-        // firebase.auth().onAuthStateChanged(user => { });
-        // firebase.database().ref('/path/to/ref').on('value', snapshot => { });
-        // firebase.firestore().doc('/foo/bar').get().then(() => { });
-        // firebase.functions().httpsCallable('yourFunction')().then(() => { });
-        // firebase.messaging().requestPermission().then(() => { });
-        // firebase.storage().ref('/path/to/ref').getDownloadURL().then(() => { });
-        // firebase.analytics(); // call to activate
-        // firebase.analytics().logEvent('tutorial_completed');
-        // firebase.performance(); // call to activate
-        //
-        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+    <main>
+      <section id="section1">
+        <img src="/images/IMG_1864.JPG" alt="Profile Picture" />
+        <div class="home-text">
+          <!-- <h2 class="text-animation">I am <span></span></h2> -->
+          <h3 class="home-text-1">I'm</h3>
+          <h3 class="home-text-2 text-animation"><span></span></h3>
+          <p>
+            I’m passionate about designing intuitive and engaging user
+            experiences. I specialize in turning concepts into beautifully
+            crafted digital products that not only look great but also function
+            seamlessly.
+          </p>
+          <a href="#section3" class="btn">View Projects</a>
+        </div>
+      </section>
 
-        try {
-          let app = firebase.app();
-          let features = [
-            'auth', 
-            'database', 
-            'firestore',
-            'functions',
-            'messaging', 
-            'storage', 
-            'analytics', 
-            'remoteConfig',
-            'performance',
-          ].filter(feature => typeof app[feature] === 'function');
-          loadEl.textContent = `Firebase SDK loaded with ${features.join(', ')}`;
-        } catch (e) {
-          console.error(e);
-          loadEl.textContent = 'Error loading the Firebase SDK, check the console.';
-        }
-      });
-    </script>
+      <section class="section2" id="section2">
+        <div class="section-headers">
+          <h2 class="sec-head-1">ABOUT</h2>
+          <h2 class="sec-head-2">ME</h2>
+        </div>
+        <div class="about">
+          <img src="/images/gayumi-removebg-preview.png" alt="About Image" />
+          <p>
+            My name is Gayumi Akmeemana, I am a software engineering student. I
+            am a web developer dedicated to crafting user-friendly and visually
+            appealing websites with expertise in HTML, and CSS. I believe in the
+            power of collaboration and continuous learning, and I am always
+            eager to take on new challenges. Let's join together and create
+            something amazing!
+          </p>
+        </div>
+      </section>
+
+      <section class="section3" id="section3">
+        <h2 class="sec-head-3">PROJECTS</h2>
+        <img src="/images/IMPO.png" alt="Project Image" />
+        <p>
+          Public libraries provide resources, services, and programs to promote
+          education and engagement. I worked on a library management project to
+          improve access to information for all members of society.
+        </p>
+      </section>
+
+      <section class="section4" id="section4">
+        <h2 class="sec-head-4">CONTACT</h2>
+        <img
+          src="/images/WhatsApp_Image_2024-07-26_at_1.05.14_PM-removebg-preview.png"
+          alt=""
+        />
+        <ul>
+          <li>Email: gayumiakmeemana@gmail.com</li>
+          <li>Phone: 0701080988</li>
+          <li>
+            <a href="https://github.com/gayuak" target="_blank">Github</a>
+          </li>
+        </ul>
+      </section>
+
+      <section id="section5">
+        <div class="form">
+          <h1>HIRE ME</h1>
+          <input type="text" placeholder="Name" />
+          <input type="email" placeholder="Email" />
+          <input type="text" placeholder="Subject" />
+          <textarea placeholder="Message" rows="5"></textarea>
+          <button type="submit">Submit</button>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>&copy; 2024 Gayumi Akmeemana. All rights reserved.</p>
+      <address>
+        Contact us at: <a href="mailto:info@example.com">info@example.com</a>
+      </address>
+    </footer>
   </body>
 </html>
